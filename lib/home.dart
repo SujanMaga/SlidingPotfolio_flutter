@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_types_as_parameter_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 class Home extends StatefulWidget {
@@ -58,7 +57,35 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        leading: PopupMenuButton(
+          icon: Icon(Icons.menu),
+          color: Colors.black,
+          itemBuilder: (context) => [
+            PopupMenuItem(
+                child: TextButton(
+              child: Text("About Me", style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                Navigator.pushNamed(context, "about");
+              },
+            )),
+            PopupMenuItem(
+                child: TextButton(
+              child: Text(
+                "Projects",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, "projects");
+              },
+            ))
+          ],
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: SlidingSheet(
         elevation: 8,
         cornerRadius: 50,
@@ -81,10 +108,8 @@ class _HomeState extends State<Home> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 50),
-                child: Container(
-                  child: Image.asset(
-                    "assets/john.png",
-                  ),
+                child: Image.asset(
+                  "assets/john.png",
                 ),
               ),
               Container(
